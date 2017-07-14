@@ -84,11 +84,12 @@ class MCG_CPT_Project {
         $this->post_args['labels'] = $this->post_labels;
 		
 		$this->taxonomy_label_singular = _x( 'Industry/Sector', 'Industry/Sector Taxonomy Label Singular', 'mcg-project-portfolio-cpt' );
-		$this->taxonomy_label_singular = _x( 'Industries/Sectors', 'Industry/Sector Taxonomy Label Plural', 'mcg-project-portfolio-cpt' );
+		$this->taxonomy_label_plural = _x( 'Industries/Sectors', 'Industry/Sector Taxonomy Label Plural', 'mcg-project-portfolio-cpt' );
 		
 		$this->taxonomy_labels = array(
 			'name' => $this->taxonomy_label_plural,
-			'menu_name' => $this->taxonomy_label_singular,
+			'singular_name' => $this->taxonomy_label_singular,
+			'menu_name' => $this->taxonomy_label_plural,
 			'all_items' => sprintf( __( 'All %s', 'mcg-project-portfolio' ), $this->taxonomy_label_plural ),
 			'edit_item' => sprintf( __( 'Edit %s', 'mcg-project-portfolio' ), $this->taxonomy_label_singular ),
 			'view_item' => sprintf( __( 'View %s', 'mcg-project-portfolio' ), $this->taxonomy_label_singular ),
