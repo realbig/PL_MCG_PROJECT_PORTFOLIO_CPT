@@ -13,14 +13,14 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if ( ! class_exists( 'PL_MCG_PROJECT_PORTFOLIO_CPT' ) ) {
+if ( ! class_exists( 'MCG_PROJECT_PORTFOLIO_CPT' ) ) {
 
 	/**
-	 * Main PL_MCG_PROJECT_PORTFOLIO_CPT class
+	 * Main MCG_PROJECT_PORTFOLIO_CPT class
 	 *
 	 * @since	  1.0.0
 	 */
-	class PL_MCG_PROJECT_PORTFOLIO_CPT {
+	class MCG_PROJECT_PORTFOLIO_CPT {
 		
 		/**
 		 * @var			PL_MCG_PROJECT_PORTFOLIO_CPT $plugin_data Holds Plugin Header Info
@@ -250,7 +250,7 @@ if ( ! class_exists( 'PL_MCG_PROJECT_PORTFOLIO_CPT' ) ) {
 add_action( 'plugins_loaded', 'mcg_project_portfolio_cpt_load' );
 function mcg_project_portfolio_cpt_load() {
 
-	require_once __DIR__ . '/core/mcg-project-portfolio-cpt-functions.php';
-	PLMCGPROJECTPORTFOLIOCPT();
+	require_once __DIR__ . '/core/project-portfolio-cpt-functions.php';
+	MCGPROJECTPORTFOLIOCPT();
 
 }

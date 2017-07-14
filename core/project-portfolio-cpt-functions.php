@@ -18,6 +18,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @return		PL_MCG_PROJECT_PORTFOLIO_CPT
  */
-function PLMCGPROJECTPORTFOLIOCPT() {
-	return PL_MCG_PROJECT_PORTFOLIO_CPT::instance();
+function MCGPROJECTPORTFOLIOCPT() {
+	return MCG_PROJECT_PORTFOLIO_CPT::instance();
 }
