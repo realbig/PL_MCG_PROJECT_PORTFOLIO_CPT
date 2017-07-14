@@ -9,7 +9,9 @@
  * Author URI: https://realbigmarketing.com/
  * Contributors: d4mation
  */
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
@@ -23,23 +25,29 @@ if ( ! class_exists( 'MCG_PROJECT_PORTFOLIO_CPT' ) ) {
 	class MCG_PROJECT_PORTFOLIO_CPT {
 		
 		/**
-		 * @var			PL_MCG_PROJECT_PORTFOLIO_CPT $plugin_data Holds Plugin Header Info
+		 * @var			MCG_PROJECT_PORTFOLIO_CPT $plugin_data Holds Plugin Header Info
 		 * @since		1.0.0
 		 */
 		public $plugin_data;
 		
 		/**
-		 * @var			PL_MCG_PROJECT_PORTFOLIO_CPT $admin_errors Stores all our Admin Errors to fire at once
+		 * @var			MCG_PROJECT_PORTFOLIO_CPT $admin_errors Stores all our Admin Errors to fire at once
 		 * @since		1.0.0
 		 */
 		private $admin_errors;
+		
+		/**
+		 * @var			MCG_CPT_Project $cpt Holds the CPT and its related functions
+		 * @since		1.0.0
+		 */
+		public $cpt;
 
 		/**
 		 * Get active instance
 		 *
 		 * @access	  public
 		 * @since	  1.0.0
-		 * @return	  object self::$instance The one true PL_MCG_PROJECT_PORTFOLIO_CPT
+		 * @return	  object self::$instance The one true MCG_PROJECT_PORTFOLIO_CPT
 		 */
 		public static function instance() {
 			
@@ -162,6 +170,9 @@ if ( ! class_exists( 'MCG_PROJECT_PORTFOLIO_CPT' ) ) {
 		 */
 		private function require_necessities() {
 			
+			require_once PL_MCG_PROJECT_PORTFOLIO_CPT_DIR . '/core/cpt/class-cpt-mcg-project.php';
+			$this->cpt = new MCG_CPT_Project();
+			
 		}
 		
 		/**
@@ -241,11 +252,11 @@ if ( ! class_exists( 'MCG_PROJECT_PORTFOLIO_CPT' ) ) {
 } // End Class Exists Check
 
 /**
- * The main function responsible for returning the one true PL_MCG_PROJECT_PORTFOLIO_CPT
+ * The main function responsible for returning the one true MCG_PROJECT_PORTFOLIO_CPT
  * instance to functions everywhere
  *
  * @since	  1.0.0
- * @return	  \PL_MCG_PROJECT_PORTFOLIO_CPT The one true PL_MCG_PROJECT_PORTFOLIO_CPT
+ * @return	  \MCG_PROJECT_PORTFOLIO_CPT The one true MCG_PROJECT_PORTFOLIO_CPT
  */
 add_action( 'plugins_loaded', 'mcg_project_portfolio_cpt_load' );
 function mcg_project_portfolio_cpt_load() {
