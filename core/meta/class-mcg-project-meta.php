@@ -40,9 +40,53 @@ class MCG_Project_Meta {
 
 	}
 
-	public function project_meta_metabox_content() {
+	public function project_meta_metabox_content( $post, $metabox ) {
+		
+		?>
 
+		<p>
+			<strong><?php _e( 'Project Client', 'mcg-project-portfolio-cpt' ); ?></strong><br />
+			<input type="text" name="project_client" class="widefat regular-text" value="<?php echo get_post_meta( $post->ID, 'project_client', true ); ?>" />
+		</p>
+		
+		<p>
+			<strong><?php _e( 'Project Grade', 'mcg-project-portfolio-cpt' ); ?></strong><br />
+			<?php $project_grade = get_post_meta( $post->ID, 'project_grade', true ); ?>
+			<select name="project_grade">
+				<option value="" disabled<?php echo ( $project_grade === false || $project_grade == '' || (int) $project_grade < 0 || (int) $project_grade > 10 ) ? ' selected' : ''?>>
+					<?php _e( 'Select a Grade', 'mcg-project-portfolio-cpt' ); ?>
+				</option>
+				<?php for ( $index = 0; $index <= 10; $index++ ) :  ?>
+					<option value="<?php echo $index; ?>"<?php echo ( $project_grade !== '' && $index === (int) $project_grade ) ? ' selected' : ''; ?>>
+						<?php echo $index; ?>
+					</option>
+				<?php endfor; ?>
+			</select>
+		</p>
 
+		<p class="mcg-field-datepicker">
+			
+			<?php
+		
+				$format = get_option( 'date_format', 'F j, Y' );
+				$value = get_post_meta( $post->ID, 'project_date', true );
+				$default = current_time( $format );
+				$preview = date( $format, strtotime( $value ? $value : $default ) );
+		
+			?>
+
+			<label>
+				<strong><?php _e( 'Project Date', 'mcg-project-portfolio-cpt' ); ?></strong><br />
+
+				<input type="text" class="mcg-field-datepicker-preview" value="<?php echo $preview; ?>" />
+
+				<input type="hidden" name="project_date" value="<?php echo $value ? $value : $default; ?>" />
+					   
+			</label>
+			
+		</p>
+
+		<?php
 
 	}
 

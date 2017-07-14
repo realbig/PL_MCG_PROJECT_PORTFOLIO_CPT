@@ -179,7 +179,10 @@ class MCG_CPT_Project {
 			// Only load for the Project Post Type
 		
 			wp_enqueue_script( 'mcg-project-portfolio-cpt-admin' );
+			wp_enqueue_script( 'jquery-ui-datepicker' );
+			
 			wp_enqueue_style( 'mcg-project-portfolio-cpt-admin' );
+			wp_enqueue_style( 'jquery-ui-smoothness' );
 			
 		}
 		

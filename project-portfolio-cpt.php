@@ -252,6 +252,20 @@ if ( ! class_exists( 'MCG_PROJECT_PORTFOLIO_CPT' ) ) {
 				apply_filters( 'mcg_project_portfolio_cpt_localize_admin_script', array() )
 			);
 			
+			global $wp_scripts;
+			
+			// get registered script object for jquery-ui
+			$ui = $wp_scripts->query( 'jquery-ui-core' );
+			
+			// tell WordPress to load the Smoothness theme from Google CDN
+			$url = "http://ajax.googleapis.com/ajax/libs/jqueryui/{$ui->ver}/themes/smoothness/jquery-ui.min.css";
+			wp_register_style(
+				'jquery-ui-smoothness',
+				$url,
+				false,
+				null
+			);
+			
 		}
 		
 	}
