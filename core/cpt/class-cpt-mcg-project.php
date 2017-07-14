@@ -29,7 +29,7 @@ class MCG_CPT_Project {
 	public $technology_application_taxonomy_labels = array();
 	
     public $icon = 'images-alt';
-	public $supports = array( 'title', 'editor', 'excerpt', 'author', 'thumbnail' );
+	public $supports = array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'page-attributes' );
 	
     public $post_args = array(
 		'public' => true,
@@ -39,7 +39,7 @@ class MCG_CPT_Project {
 		'query_var' => true,
 		'capability_type' => 'post',
 		'has_archive' => true,
-		'hierarchical' => false,
+		'hierarchical' => true,
 		'menu_position' => null,
         'rewrite' => array(
             'slug' => 'project-portfolio',
@@ -94,7 +94,7 @@ class MCG_CPT_Project {
         );
 		
 		$this->post_args['menu_icon'] = 'dashicons-' . $this->icon;
-		$this->post_args['support'] = $this->supports;
+		$this->post_args['supports'] = $this->supports;
 		
         $this->post_args['labels'] = $this->post_labels;
 		
