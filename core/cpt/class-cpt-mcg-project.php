@@ -153,6 +153,8 @@ class MCG_CPT_Project {
 		add_action( 'init', array( $this, 'register_post_type' ) );
 		add_action( 'init', array( $this, 'register_taxonomy' ) );
 		
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
+		
     }
 	
 	public function register_post_type() {
@@ -165,6 +167,21 @@ class MCG_CPT_Project {
 		
 		register_taxonomy( 'mcg-project-industry-sector', $this->post_type, $this->industry_sector_taxonomy_args );
 		register_taxonomy( 'mcg-project-tech-application', $this->post_type, $this->technology_application_taxonomy_args );
+		
+	}
+	
+	public function admin_enqueue_scripts() {
+		
+		$current_screen = get_current_screen();
+		global $pagenow;
+
+		if ( ( $current_screen->post_type == $this->post_type ) && ( in_array( $pagenow, array( 'post-new.php', 'post.php' ) ) ) ) {
+			// Only load for the Project Post Type
+		
+			wp_enqueue_script( 'mcg-project-portfolio-cpt-admin' );
+			wp_enqueue_style( 'mcg-project-portfolio-cpt-admin' );
+			
+		}
 		
 	}
 	

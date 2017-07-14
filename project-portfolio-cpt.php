@@ -39,6 +39,12 @@ if ( ! class_exists( 'MCG_PROJECT_PORTFOLIO_CPT' ) ) {
 		 * @since		1.0.0
 		 */
 		public $cpt;
+		
+		/**
+		 * @var			MCG_Project_Meta $meta Holds the Meta fields for the CPT
+		 * @since		1.0.0
+		 */
+		public $meta;
 
 		/**
 		 * Get active instance
@@ -170,6 +176,9 @@ if ( ! class_exists( 'MCG_PROJECT_PORTFOLIO_CPT' ) ) {
 			
 			require_once PL_MCG_PROJECT_PORTFOLIO_CPT_DIR . '/core/cpt/class-cpt-mcg-project.php';
 			$this->cpt = new MCG_CPT_Project();
+			
+			require_once PL_MCG_PROJECT_PORTFOLIO_CPT_DIR . '/core/meta/class-mcg-project-meta.php';
+			$this->meta = new MCG_Project_Meta();
 			
 		}
 		
