@@ -17,23 +17,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
 
+global $mk_options; 
+
 get_header();
 
 Mk_Static_Files::addAssets( 'mk_blog' );
 
 $blog_style = 'blog-style-' . mk_get_blog_single_style();
-$blog_type = 'blog-post-type-'.mk_get_blog_single_type();
+$blog_type = 'blog-post-type-' . mk_get_blog_single_type();
 
-/**
- * Template part for blog single single.php. views/blog/components
- *
- * @author  Artbees
- * @package jupiter/views
- * @since   5.0.0
- * @since   5.9.1 Added if conditions for `mk_get_view()` functions and removed unnecessary php tags.
- */
-
-global $mk_options; ?>
+?>
 
 <div id="theme-page" class="master-holder <?php echo $blog_type; ?> <?php echo $blog_style; ?> clearfix" itemscope="itemscope" itemtype="https://schema.org/Blog">
 
@@ -52,36 +45,11 @@ global $mk_options; ?>
 
 						<?php
 
-						do_action( 'blog_single_before_featured_image' );
-
-						if ( mk_get_blog_single_style() !== 'bold' ) {
-							mk_get_view( 'blog/components', 'blog-single-featured' );
-							mk_get_view( 'blog/components', 'blog-single-meta' ); 
-						}
-
 						do_action( 'blog_single_before_the_content' );
 
 						mk_get_view( 'blog/components', 'blog-single-content' );
 
-						do_action( 'blog_single_after_the_content' );
-
-						if ( mk_get_blog_single_style() === 'bold' ) {
-							mk_get_view( 'blog/components', 'blog-single-bold-share' ); 
-						}
-
-						if ( $mk_options['enable_blog_author'] === 'true' && get_post_meta( get_the_ID(), '_disable_about_author', true ) !== 'false' ) {
-							mk_get_view( 'blog/components', 'blog-single-about-author' ); 
-						}
-
-						if ( mk_get_blog_single_style() !== 'bold' ) {
-							mk_get_view( 'blog/components', 'blog-similar-posts' ); 
-						}
-
-						if ( $mk_options['blog_single_comments'] === 'true' && get_post_meta( get_the_ID(), '_disable_comments', true ) !== 'false' ) {
-							mk_get_view( 'blog/components', 'blog-single-comments' ); 
-						}
-
-						do_action( 'blog_single_after_comments' ); 
+						do_action( 'blog_single_after_the_content' ); 
 
 						?>
 

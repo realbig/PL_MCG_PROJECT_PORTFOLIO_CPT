@@ -20,6 +20,8 @@ class MCG_Project_Template_Redirects {
 		
 		add_filter( 'archive_template', array( $this, 'archive_template' ) );
 		
+		add_filter( 'get_post_metadata', array( $this, 'get_post_metadata' ), 10, 4 );
+		
 	}
 	
 	public function single_template( $template ) {
@@ -51,6 +53,20 @@ class MCG_Project_Template_Redirects {
 		}
 		
 		return $template;
+		
+	}
+	
+	public function get_post_metadata( $metadata, $object_id, $meta_key, $single ) {
+		
+		if ( $meta_key == '_disable_breadcrumb' ) {
+			
+			if ( MCGPROJECTPORTFOLIOCPT()->cpt->post_type == get_post_type( $object_id ) ) {
+				return 'false';
+			}
+			
+		}
+		
+		return $metadata;
 		
 	}
 	
