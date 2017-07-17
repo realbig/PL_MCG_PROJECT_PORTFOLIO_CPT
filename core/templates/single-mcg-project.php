@@ -43,6 +43,10 @@ $blog_type = 'blog-post-type-' . mk_get_blog_single_type();
 
 					<article id="<?php the_ID(); ?>" <?php post_class( array( 'mk-blog-single' ) ); ?> <?php echo get_schema_markup( 'blog_posting' ); ?>>
 						
+						<a href="<?php echo get_post_type_archive_link( MCGPROJECTPORTFOLIOCPT()->cpt->post_type ); ?>" title="<?php _e( 'Return to Case Study List', 'mcg-project-portfolio-cpt' ); ?>">
+							<?php _e( '&laquo; Return to Case Study List', 'mcg-project-portfolio-cpt' ); ?>
+						</a>
+						
 						<h1 class="project-title"><?php the_title(); ?></h1>
 
 						<?php
@@ -54,6 +58,10 @@ $blog_type = 'blog-post-type-' . mk_get_blog_single_type();
 						do_action( 'blog_single_after_the_content' ); 
 
 						?>
+						
+						<a href="<?php echo get_post_type_archive_link( MCGPROJECTPORTFOLIOCPT()->cpt->post_type ); ?>" title="<?php _e( 'Return to Case Study List', 'mcg-project-portfolio-cpt' ); ?>">
+							<?php _e( '&laquo; Return to Case Study List', 'mcg-project-portfolio-cpt' ); ?>
+						</a>
 
 					</article>
 
