@@ -59,9 +59,22 @@ $blog_type = 'blog-post-type-' . mk_get_blog_single_type();
 
 						?>
 						
-						<a href="<?php echo get_post_type_archive_link( MCGPROJECTPORTFOLIOCPT()->cpt->post_type ); ?>" title="<?php _e( 'Return to Case Study List', 'mcg-project-portfolio-cpt' ); ?>">
-							<?php _e( '&laquo; Return to Case Study List', 'mcg-project-portfolio-cpt' ); ?>
-						</a>
+						<p>
+							<div class="mk-gradient-button fullwidth-false project-contact-button">
+								<a href="/contact/" class="mk-button mk-button--dimension-two mk-button--size-medium mk-button--corner-rounded dark-skin" target="_self" title="<?php _e( 'Contact Us Today', 'mcg-project-portfolio-cpt' ); ?>">
+									<span class="text"><?php _e( 'Contact Us Today &raquo;', 'mcg-project-portfolio-cpt' ); ?></span>
+									<i class="darker-background"></i>
+								</a>
+							</div>
+						</p>
+						
+						<p>
+						
+							<a href="<?php echo get_post_type_archive_link( MCGPROJECTPORTFOLIOCPT()->cpt->post_type ); ?>" title="<?php _e( 'Return to Case Study List', 'mcg-project-portfolio-cpt' ); ?>">
+								<?php _e( '&laquo; Return to Case Study List', 'mcg-project-portfolio-cpt' ); ?>
+							</a>
+							
+						</p>
 
 					</article>
 

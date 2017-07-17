@@ -4,4 +4,30 @@
 		font-size: 40px;
 	}
 	
+	.project-contact-button {
+		
+		font-family: Playfair Display;
+		
+		a {
+			
+			background-color: #fbb33d;
+			
+			box-shadow: 0 0.25em 0 0 #bbbab6;
+			
+			&:hover {
+				
+				.text {
+					color: #fff;
+				}
+				
+			}
+			
+		}
+		
+		a, .darker-background {
+			border-radius: 2em !important;
+		}
+		
+	}
+	
 }
