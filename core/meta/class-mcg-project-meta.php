@@ -17,6 +17,8 @@ class MCG_Project_Meta {
 	function __construct() {
 
 		add_action( 'add_meta_boxes', array( $this, 'add_meta_box' ) );
+		
+		add_action( 'save_post', array( $this, 'save_post' ) );
 
 	}
 
@@ -114,7 +116,7 @@ class MCG_Project_Meta {
 				
 				<input type="button" class="button remove-media" value="<?php _e( 'Remove Thumbnail Image', 'mcg-project-portfolio-cpt' ); ?>" <?php echo ! $value ? 'style="display: none;"' : ''; ?> />
 
-				<input type="hidden" name="<?php echo esc_attr( $name ); ?>" value="<?php echo esc_attr( $value ); ?>" class="media-id" />
+				<input type="hidden" name="project_thumbnail" value="<?php echo esc_attr( $value ); ?>" class="media-id" />
 				
 			</div>
 
@@ -122,6 +124,27 @@ class MCG_Project_Meta {
 
 		<?php
 
+	}
+	
+	public function save_post( $post_id ) {
+		
+		if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) return $post_id;
+		
+		$fields = array(
+			'project_client',
+			'project_grade',
+			'project_date',
+			'project_thumbnail',
+		);
+		
+		foreach ( $fields as $field ) {
+			
+			$value = $_POST[ $field ];
+			
+			update_post_meta( $post_id, $field, $_POST[ $field ] );
+			
+		}
+		
 	}
 
 }
