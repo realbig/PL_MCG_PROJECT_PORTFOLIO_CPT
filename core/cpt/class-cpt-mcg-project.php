@@ -157,12 +157,26 @@ class MCG_CPT_Project {
 		
     }
 	
+	/**
+	 * Register our CPT
+	 * 
+	 * @access		public
+	 * @since		1.0.0
+	 * @return		void
+	 */
 	public function register_post_type() {
 		
 		register_post_type( $this->post_type, $this->post_args );
 		
 	}
 	
+	/**
+	 * Register our Taxonomies
+	 * 
+	 * @access		public
+	 * @since		1.0.0
+	 * @return		void
+	 */
 	public function register_taxonomy() {
 		
 		register_taxonomy( 'mcg-project-industry-sector', $this->post_type, $this->industry_sector_taxonomy_args );
@@ -170,6 +184,13 @@ class MCG_CPT_Project {
 		
 	}
 	
+	/**
+	 * Enqueue Admin Scripts
+	 * 
+	 * @access		public
+	 * @since		1.0.0
+	 * @return		void
+	 */
 	public function admin_enqueue_scripts() {
 		
 		$current_screen = get_current_screen();

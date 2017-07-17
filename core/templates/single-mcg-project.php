@@ -42,6 +42,8 @@ $blog_type = 'blog-post-type-' . mk_get_blog_single_type();
 				<?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
 
 					<article id="<?php the_ID(); ?>" <?php post_class( array( 'mk-blog-single' ) ); ?> <?php echo get_schema_markup( 'blog_posting' ); ?>>
+						
+						<h1 class="project-title"><?php the_title(); ?></h1>
 
 						<?php
 

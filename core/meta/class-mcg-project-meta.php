@@ -22,6 +22,13 @@ class MCG_Project_Meta {
 
 	}
 
+	/**
+	 * Add Meta Boxes for Projects
+	 * 
+	 * @access		public
+	 * @since		1.0.0
+	 * @return		void
+	 */
 	public function add_meta_box() {
 
 		add_meta_box(
@@ -42,6 +49,16 @@ class MCG_Project_Meta {
 
 	}
 
+	/**
+	 * Add Fields for the generic "Project Meta" Meta Box
+	 * 
+	 * @param		object $post    WP_Post Object
+	 * @param		array  $metabox Meta Box $args
+	 *                                  
+	 * @access		public
+	 * @since		1.0.0
+	 * @return		void
+	 */
 	public function project_meta_metabox_content( $post, $metabox ) {
 		
 		?>
@@ -92,6 +109,16 @@ class MCG_Project_Meta {
 
 	}
 
+	/**
+	 * Add Fields for the Project Thumbnail Meta Box
+	 * 
+	 * @param		object $post    WP_Post Object
+	 * @param		array  $metabox Meta Box $args
+	 *                                  
+	 * @access		public
+	 * @since		1.0.0
+	 * @return		void
+	 */
 	public function project_thumbnail_metabox_content( $post, $metabox ) {
 		
 		$value = get_post_meta( $post->ID, 'project_thumbnail', true );
@@ -126,9 +153,20 @@ class MCG_Project_Meta {
 
 	}
 	
+	/**
+	 * Save our Meta Fields
+	 * 
+	 * @param		integer $post_id Post ID
+	 *                               
+	 * @access		public
+	 * @since		1.0.0
+	 * @return		integer Post ID
+	 */
 	public function save_post( $post_id ) {
 		
 		if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) return $post_id;
+		
+		if ( MCGPROJECTPORTFOLIOCPT()->cpt->post_type !== get_post_type( $post_id ) ) return $post_id;
 		
 		$fields = array(
 			'project_client',

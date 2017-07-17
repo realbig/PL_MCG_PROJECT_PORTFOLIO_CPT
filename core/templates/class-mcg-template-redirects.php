@@ -16,6 +16,8 @@ class MCG_Project_Template_Redirects {
 	
 	function __construct() {
 		
+		add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) );
+		
 		add_filter( 'single_template', array( $this, 'single_template' ) );
 		
 		add_filter( 'archive_template', array( $this, 'archive_template' ) );
@@ -26,13 +28,43 @@ class MCG_Project_Template_Redirects {
 		
 	}
 	
+	/**
+	 * Add our CSS to the Projects Pages
+	 * 
+	 * @access		public
+	 * @since		1.0.0
+	 * @return		void
+	 */
+	public function wp_enqueue_scripts() {
+		
+		if ( ! is_admin() &&
+			MCGPROJECTPORTFOLIOCPT()->cpt->post_type == get_post_type() ) {
+		
+			wp_enqueue_style( 'mcg-project-portfolio-cpt' );
+			
+		}
+		
+	}
+	
+	/**
+	 * Include WP Template File for Single Projects from the Plugin Directory. This can be overridden by the Theme
+	 * 
+	 * @param		string $template Single Template File Path determined automatically by WordPress
+	 *        
+	 * @access		public
+	 * @since		1.0.0
+	 * @return		string Template Path
+	 */
 	public function single_template( $template ) {
 		
 		global $post;
 		
 		if ( MCGPROJECTPORTFOLIOCPT()->cpt->post_type == $post->post_type ) {
 			
-			if ( $theme_template = locate_template( 'single-' . $post->post_type . '.php', false, false ) ) return $theme_template;
+			$theme_template = substr( $template, strrpos( $template, '/' ) + 1 );
+			
+			// If the Template Path used is not single.php (AKA, not default fallback), then use that. It is an override.
+			if ( $theme_template !== 'single.php' ) return $template;
 			
 			return PL_MCG_PROJECT_PORTFOLIO_CPT_DIR . 'core/templates/single-' . $post->post_type . '.php';
 			
@@ -42,13 +74,25 @@ class MCG_Project_Template_Redirects {
 		
 	}
 	
+	/**
+	 * Include WP Template File for Projects Archives from the Plugin Directory. This can be overridden by the Theme
+	 * 
+	 * @param		string $template Archive Template File Path determined automatically by WordPress
+	 *                                                                                 
+	 * @access		public
+	 * @since		1.0.0
+	 * @return		string Template Path
+	 */
 	public function archive_template( $template ) {
 		
 		global $post;
 		
 		if ( MCGPROJECTPORTFOLIOCPT()->cpt->post_type == $post->post_type ) {
 			
-			if ( $theme_template = locate_template( 'archive-' . $post->post_type . '.php', false, false ) ) return $theme_template;
+			$theme_template = substr( $template, strrpos( $template, '/' ) + 1 );
+			
+			// If the Template Path used is not archive.php (AKA, not default fallback), then use that. It is an override.
+			if ( $theme_template !== 'archive.php' ) return $template;
 			
 			return PL_MCG_PROJECT_PORTFOLIO_CPT_DIR . 'core/templates/archive-' . $post->post_type . '.php';
 			
@@ -65,7 +109,9 @@ class MCG_Project_Template_Redirects {
 	 * @param		integer           $object_id Post ID
 	 * @param		string            $meta_key  Meta Key
 	 * @param		boolean           $single    Whether to return only the first value of the specified $meta_key
-	 *                                                                                              
+	 *        
+	 * @access		public
+	 * @since		1.0.0
 	 * @return 		null|array|string Value
 	 */
 	public function get_post_metadata( $value, $object_id, $meta_key, $single ) {
@@ -87,7 +133,9 @@ class MCG_Project_Template_Redirects {
 	 * Replace Title in Header Area on Single Projects to be Case Studies like in the Mock.
 	 * 
 	 * @param		string $title Header Title
-	 *                              
+	 *     
+	 * @access		public
+	 * @since		1.0.0
 	 * @return		string Header Title
 	 */
 	public function mk_theme_page_header_title( $title ) {
