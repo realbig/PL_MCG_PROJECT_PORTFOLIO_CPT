@@ -140,8 +140,7 @@ class MCG_Project_Template_Redirects {
 	 */
 	public function mk_theme_page_header_title( $title ) {
 		
-		if ( is_single() && 
-			MCGPROJECTPORTFOLIOCPT()->cpt->post_type == get_post_type() ) {
+		if ( MCGPROJECTPORTFOLIOCPT()->cpt->post_type == get_post_type() ) {
 			return __( 'Case Studies', 'mcg-project-portfolio-cpt' );
 		}
 		
