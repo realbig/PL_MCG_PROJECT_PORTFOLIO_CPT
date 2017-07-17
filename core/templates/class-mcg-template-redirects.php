@@ -22,6 +22,8 @@ class MCG_Project_Template_Redirects {
 		
 		add_filter( 'get_post_metadata', array( $this, 'get_post_metadata' ), 10, 4 );
 		
+		add_filter( 'mk_theme_page_header_title', array( $this, 'mk_theme_page_header_title' ) );
+		
 	}
 	
 	public function single_template( $template ) {
@@ -56,7 +58,17 @@ class MCG_Project_Template_Redirects {
 		
 	}
 	
-	public function get_post_metadata( $metadata, $object_id, $meta_key, $single ) {
+	/**
+	 * Force-hide Breadcrumbs. We're doing our own
+	 * 
+	 * @param		null|array|string $value     Defaults to null. Return anything else to override the value
+	 * @param		integer           $object_id Post ID
+	 * @param		string            $meta_key  Meta Key
+	 * @param		boolean           $single    Whether to return only the first value of the specified $meta_key
+	 *                                                                                              
+	 * @return 		null|array|string Value
+	 */
+	public function get_post_metadata( $value, $object_id, $meta_key, $single ) {
 		
 		if ( $meta_key == '_disable_breadcrumb' ) {
 			
@@ -66,7 +78,26 @@ class MCG_Project_Template_Redirects {
 			
 		}
 		
-		return $metadata;
+		return $value;
+		
+	}
+	
+	/**
+	 * GG, Jupiter Theme. I'm thoroughly impressed.
+	 * Replace Title in Header Area on Single Projects to be Case Studies like in the Mock.
+	 * 
+	 * @param		string $title Header Title
+	 *                              
+	 * @return		string Header Title
+	 */
+	public function mk_theme_page_header_title( $title ) {
+		
+		if ( is_single() && 
+			MCGPROJECTPORTFOLIOCPT()->cpt->post_type == get_post_type() ) {
+			return __( 'Case Studies', 'mcg-project-portfolio-cpt' );
+		}
+		
+		return $title;
 		
 	}
 	
