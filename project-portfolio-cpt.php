@@ -9,7 +9,9 @@
  * Author URI: https://realbigmarketing.com/
  * Contributors: d4mation
  */
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
@@ -45,6 +47,12 @@ if ( ! class_exists( 'MCG_PROJECT_PORTFOLIO_CPT' ) ) {
 		 * @since		1.0.0
 		 */
 		public $meta;
+		
+		/**
+		 * @var			MCG_CPT_Project_Template_Redirect $templates Redirects Templating to our Plugin Directory if a Theme Override does not exist
+		 * @since		1.0.0
+		 */
+		public $templates;
 
 		/**
 		 * Get active instance
@@ -179,6 +187,9 @@ if ( ! class_exists( 'MCG_PROJECT_PORTFOLIO_CPT' ) ) {
 			
 			require_once PL_MCG_PROJECT_PORTFOLIO_CPT_DIR . '/core/meta/class-mcg-project-meta.php';
 			$this->meta = new MCG_Project_Meta();
+			
+			require_once PL_MCG_PROJECT_PORTFOLIO_CPT_DIR . '/core/templates/class-mcg-template-redirects.php';
+			$this->templates = new MCG_Project_Template_Redirects();
 			
 		}
 		

@@ -4,7 +4,7 @@
  *
  * @since		1.0.0
  * @package		PL_MCG_PROJECT_PORTFOLIO_CPT
- * @subpackage	PL_MCG_PROJECT_PORTFOLIO_CPT/core/cpt
+ * @subpackage	PL_MCG_PROJECT_PORTFOLIO_CPT/core/meta
  */
 
 // Don't load directly
