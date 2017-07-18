@@ -26,6 +26,8 @@ class MCG_Project_Template_Redirects {
 		
 		add_filter( 'mk_theme_page_header_title', array( $this, 'mk_theme_page_header_title' ) );
 		
+		add_action( 'pre_get_posts', array( $this, 'pre_get_posts' ) );
+		
 	}
 	
 	/**
@@ -41,6 +43,8 @@ class MCG_Project_Template_Redirects {
 			MCGPROJECTPORTFOLIOCPT()->cpt->post_type == get_post_type() ) {
 		
 			wp_enqueue_style( 'mcg-project-portfolio-cpt' );
+			
+			wp_enqueue_script( 'mcg-project-portfolio-cpt' );
 			
 		}
 		
@@ -145,6 +149,49 @@ class MCG_Project_Template_Redirects {
 		}
 		
 		return $title;
+		
+	}
+	
+	/**
+	 * Modify WP_Query for Project Archives as appropriate
+	 * 
+	 * @param		object $wp_query WP_Query Object
+	 *                                   
+	 * @access		public
+	 * @since		1.0.0
+	 * @return		void
+	 */
+	public function pre_get_posts( $wp_query ) {
+		
+		if ( ! $wp_query->is_archive && 
+			$wp_query->query_vars->post_type !== MCGPROJECTPORTFOLIOCPT()->cpt->post_type ) return;
+		
+		if ( isset( $_REQUEST['project_category'] ) &&
+			! empty( $_REQUEST['project_category'] ) ) {
+			
+			$wp_query->set( 'tax_query', array(
+				'relation' => 'OR',
+				array(
+					'taxonomy' => 'mcg-project-industry-sector',
+					'field' => 'slug',
+					'terms' => $_REQUEST['project_category'],
+				),
+				array(
+					'taxonomy' => 'mcg-project-tech-application',
+					'field' => 'slug',
+					'terms' => $_REQUEST['project_category'],
+				),
+			) );
+			
+		}
+		
+		// Highest Menu Order Number First, then by Title A-Z
+		$wp_query->set( 'orderby', array(
+			'menu_order' => 'DESC',
+			'title' => 'ASC',
+		) );
+		
+		$wp_query->set( 'posts_per_page', 12 );
 		
 	}
 	
