@@ -48,6 +48,8 @@ $blog_type = 'blog-post-type-' . mk_get_blog_single_type();
 						</a>
 						
 						<h1 class="project-title"><?php the_title(); ?></h1>
+						
+						<?php mk_get_view( 'blog/components', 'blog-single-featured' ); ?>
 
 						<?php
 

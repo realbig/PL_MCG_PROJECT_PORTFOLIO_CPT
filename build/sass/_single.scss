@@ -4,6 +4,21 @@
 		font-size: 40px;
 	}
 	
+	.featured-image {
+		
+		&, & > * {
+			
+			width: 95%;
+			text-align: center;
+			
+			@media #{$medium-up} {
+				width: 100%;
+			}
+			
+		}
+		
+	}
+	
 	.project-contact-button {
 		
 		@include project-button;
