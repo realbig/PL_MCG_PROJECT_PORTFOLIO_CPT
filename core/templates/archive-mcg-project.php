@@ -83,8 +83,42 @@ if ($view_params['layout'] == 'full') {
 								?>
 								
 								<div class="rbm-col-small-12 rbm-col-medium-2 project-image">
-								
-									<?php echo  mk_get_shortcode_view( 'mk_blog', 'components/featured-media', true, $media_atts ); ?>
+									
+									<?php
+									
+									// This originally ran a Shortcode as part of the Theme, but it only worked for the Featured Image.
+									// I copied it from the Parent Theme, cleaned up the code a tad, and changed it to not be specific to the Featured Image. Otherwise it is 100% the same as it is in the Parent Theme
+									
+									$thumbnail_id = get_post_meta( get_the_ID(), 'project_thumbnail', true );
+									
+									$image_src_array = wp_get_attachment_image_src( $thumbnail_id, 'full' );
+
+									$image_permalink = isset( $view_params['single_post'] ) ? $image_src_array[0] : esc_url( get_permalink() );
+									$image_permalink_class = isset( $view_params['single_post'] ) ? 'mk-lightbox' : '';
+
+									// Do not output random placeholder images in single post if the post does not have a featured image!
+									$dummy = isset( $view_params['single_post'] ) ? false : true;
+
+									$featured_image_src = Mk_Image_Resize::resize_by_id_adaptive( $thumbnail_id, $view_params['image_size'], $view_params['image_width'], $view_params['image_height'], $crop = false, $dummy );
+									
+									$image_size_atts = Mk_Image_Resize::get_image_dimension_attr( $thumbnail_id, $view_params['image_size'], $view_params['image_width'], $view_params['image_height'] );
+									
+									if ( ! Mk_Image_Resize::is_default_thumb( $image_src_array[0] ) ) : ?>
+            
+									<div class="featured-image">
+										
+										<a class="full-cover-link '<?php echo $image_permalink_class; ?>" title="<?php the_title_attribute(); ?>" href="<?php echo $image_permalink; ?>">&nbsp;</a>
+										
+										<img class="blog-image" alt="<?php the_title_attribute(); ?>" title="<?php the_title_attribute(); ?>" src="<?php echo $featured_image_src['dummy']; ?>" <?php echo $featured_image_src['data-set']; ?> width="<?php echo esc_attr( $image_size_atts['width'] ); ?>" height="<?php echo esc_attr( $image_size_atts['height'] ); ?>" itemprop="image" />
+            
+										<div class="image-hover-overlay"></div>
+										
+            							<div class="post-type-badge" href="<?php echo esc_url( get_permalink() ); ?>">
+											<?php echo Mk_SVG_Icons::get_svg_icon_by_class_name( false, 'mk-li-' . $view_params['post_type'], 48 ); ?>
+										</div>
+            						</div>
+									
+									<?php endif; ?>
 									
 								</div>
 
