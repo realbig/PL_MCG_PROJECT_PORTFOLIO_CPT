@@ -113,62 +113,66 @@ if ($view_params['layout'] == 'full') {
 						
 							?>
 						
-							<h2 class="project-archive-header"><?php echo $term->name; ?></h2>
+							<h2 class="project-archive-title"><?php echo $term->name; ?></h2>
 						
 						<?php else : ?>
 						
-							<h2 class="project-archive-header"><?php _e( 'Projects', 'mcg-project-portfolio-cpt' ); ?></h2>
+							<h2 class="project-archive-title"><?php _e( 'Projects', 'mcg-project-portfolio-cpt' ); ?></h2>
 						
 						<?php endif; ?>
 					
 					</div>
 					
-					<div class="rbm-col-small-12 rbm-col-medium-6 align-right">
+					<div class="rbm-col-small-12 rbm-col-medium-6 project-breadcrumbs-container align-right">
 						
-						<?php if ( isset( $_REQUEST['project_category'] ) && 
-								 ! empty( $_REQUEST['project_category'] ) ) : 
+						<div class="project-breadcrumbs">
 						
-							// Get the Term from either Taxonomy since we aren't specifying in the Query
-							$term = get_term_by( 'slug', $_REQUEST['project_category'], 'mcg-project-industry-sector' );
+							<?php if ( isset( $_REQUEST['project_category'] ) && 
+									 ! empty( $_REQUEST['project_category'] ) ) : 
 
-							if ( ! $term ) {
-								$term = get_term_by( 'slug', $_REQUEST['project_category'], 'mcg-project-tech-application' );
-							}
+								// Get the Term from either Taxonomy since we aren't specifying in the Query
+								$term = get_term_by( 'slug', $_REQUEST['project_category'], 'mcg-project-industry-sector' );
 
-							$ancestors = array_reverse( get_ancestors( $term->term_id, $term->taxonomy ) );
-						
-							$post_type_object = get_post_type_object( MCGPROJECTPORTFOLIOCPT()->cpt->post_type );
-						
-							?>
-						
-							<a href="<?php echo get_post_type_archive_link( MCGPROJECTPORTFOLIOCPT()->cpt->post_type ); ?>" title="<?php echo $post_type_object->labels->name; ?>">
-								<?php echo $post_type_object->labels->name; ?>
-							</a>
-						
-							<?php foreach ( $ancestors as $ancestor ) : 
-						
-								$ancestor_term = get_term_by( 'id', $ancestor, $term->taxonomy );
-								
-								// Our Term Archives are a little... unorthodox
-								$term_archive = get_post_type_archive_link( MCGPROJECTPORTFOLIOCPT()->cpt->post_type ) . '?project_category=' . $ancestor_term->slug;
-						
-							?>
-						
-								&raquo;
-						
-								<a href="<?php echo $term_archive; ?>" title="<?php echo $ancestor_term->name; ?>">
-									<?php echo $ancestor_term->name; ?>
+								if ( ! $term ) {
+									$term = get_term_by( 'slug', $_REQUEST['project_category'], 'mcg-project-tech-application' );
+								}
+
+								$ancestors = array_reverse( get_ancestors( $term->term_id, $term->taxonomy ) );
+
+								$post_type_object = get_post_type_object( MCGPROJECTPORTFOLIOCPT()->cpt->post_type );
+
+								?>
+
+								<a href="<?php echo get_post_type_archive_link( MCGPROJECTPORTFOLIOCPT()->cpt->post_type ); ?>" title="<?php echo $post_type_object->labels->name; ?>">
+									<?php echo $post_type_object->labels->name; ?>
 								</a>
-						
-							<?php endforeach;
-						
-							echo '&raquo; ' . $term->name;
-						
-						else : ?>
-						
-						
-						
-						<?php endif; ?>
+
+								<?php foreach ( $ancestors as $ancestor ) : 
+
+									$ancestor_term = get_term_by( 'id', $ancestor, $term->taxonomy );
+
+									// Our Term Archives are a little... unorthodox
+									$term_archive = get_post_type_archive_link( MCGPROJECTPORTFOLIOCPT()->cpt->post_type ) . '?project_category=' . $ancestor_term->slug;
+
+								?>
+
+									&raquo;
+
+									<a href="<?php echo $term_archive; ?>" title="<?php echo $ancestor_term->name; ?>">
+										<?php echo $ancestor_term->name; ?>
+									</a>
+
+								<?php endforeach;
+
+								echo '&raquo; ' . $term->name;
+
+							else : ?>
+
+
+
+							<?php endif; ?>
+							
+						</div>
 						
 					</div>
 				

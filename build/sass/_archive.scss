@@ -1,15 +1,42 @@
 .post-type-archive-mcg-project {
 	
-	.project-category-select {
+	.project-header {
 		
-		background-color: #f0b500 !important;
-		margin-bottom: 1em;
+		@media #{$medium-up} {
 		
-	}
+			display: table;
+			width: 100%;
+			
+		}
 	
-	.project-archive-header {
+		.project-category-select {
+
+			background-color: #f0b500 !important;
+			margin-bottom: 1em;
+
+		}
+
+		.project-archive-title {
+
+			font-size: 40px;
+
+		}
 		
-		font-size: 40px;
+		@media #{$medium-up} {
+		
+			.project-breadcrumbs-container {
+
+				display: table-cell;
+
+				.project-breadcrumbs {
+					display: inline-block;
+					vertical-align: bottom;
+					height: 0em;
+				}
+
+			}
+			
+		}
 		
 	}
 	
