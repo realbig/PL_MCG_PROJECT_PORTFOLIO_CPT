@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
 
-global $post, $mk_options;
+global $post, $mk_options, $wp_query;
 
 // I just want to point out how horribly backwards and misleading this option is.
 // "false" for disable_breadcrumbs... disables the breadcrumbs. They're shown on 'true'
@@ -152,6 +152,16 @@ if ($view_params['layout'] == 'full') {
 					endif; ?>
 					
 				</section>
+				
+				<div class="mk-pagination mk-grid clearfix">
+
+						<?php the_posts_pagination( array(
+							'prev_text'          => _x( 'Previous', 'Previous Page Pagination Text', 'mcg-project-portfolio-cpt' ),
+							'next_text'          => _x( 'Next', 'Next Page Pagination Text', 'mcg-project-portfolio-cpt' ),
+							'before_page_number' => '<span class="meta-nav screen-reader-text">' . _x( 'Page', 'Page Screen Reader Text', 'mcg-project-portfolio-cpt' ) . ' </span>',
+						) ); ?>
+
+				</div>
 				
 			</div>
 		</div>
