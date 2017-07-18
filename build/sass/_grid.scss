@@ -1,0 +1,22 @@
+@each $name in $media-query-classes {
+	
+	$media-query: map-get( $media-query-classes-map, "#{$name}-up" );
+	
+	@media #{$media-query} {
+		
+		@for $i from 1 through 12 {
+	
+			.rbm-col-#{$name}-#{$i} {
+
+				box-sizing: border-box;
+				padding: 0.5em;
+				float: left;
+				width: #{100 * ($i/12)}#{"%"};
+
+			}
+		
+		}
+		
+	}
+
+}

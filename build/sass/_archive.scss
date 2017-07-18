@@ -1,0 +1,54 @@
+.post-type-archive-mcg-project {
+	
+	.project-row {
+		
+		border-top: 3px solid #e6e6e6;
+		margin-bottom: 0;
+		
+		&:last-of-type {
+			
+			border-bottom: 3px solid #e6e6e6;
+			
+		}
+		
+	}
+	
+	.project-image {
+		
+		.featured-image {
+			
+			margin-bottom: 0 !important;
+			
+			img {
+			
+				@media #{$medium-up} {
+					max-width: 140px;
+				}
+				
+			}
+			
+		}
+		
+	}
+	
+	.project-excerpt {
+		
+		.the-title a {
+			
+			font-family: Playfair Display;
+			color: #3651a7;
+			font-size: 30px;
+			
+		}
+		
+	}
+	
+	.project-read-more {
+		
+		.project-button {
+			@include project-button;
+		}
+		
+	}
+	
+}

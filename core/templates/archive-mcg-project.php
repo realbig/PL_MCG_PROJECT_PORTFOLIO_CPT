@@ -31,7 +31,7 @@ $view_params = array(
     'layout' => 'right',
     'column' => 3,
     'disable_meta' => 'true',
-    'grid_image_height' => '350',
+    'grid_image_height' => '140',
     'comments_share' => 'true',
     'full_content' => 'false',
     'image_size' => 'crop',
@@ -68,31 +68,44 @@ if ($view_params['layout'] == 'full') {
 					
 						while( have_posts() ) : the_post(); ?>
 
-							<article id="<?php the_ID(); ?>" class="mk-blog-modern-item mk-isotop-item <?php echo get_post_type(); ?>-post-type">
+							<article id="<?php the_ID(); ?>" class="mk-blog-modern-item mk-isotop-item any-post-type project-row">
+								
 								<?php
 								$media_atts = array(
 									'image_size'    => $view_params['image_size'],
-									'image_width'   => $image_width,
-									'image_height'  => $view_params['grid_image_height'],
+									'image_width'   => '140px',
+									'image_height'  => '140px',
 									'lazyload'      => $view_params['lazyload'],
 									'disable_lazyload'      => $view_params['disable_lazyload'],
-									'post_type'     => get_post_type(),
+									'post_type'     => 'image',
 									//'image_quality' => $view_params['image_quality']
 								);
-								echo  mk_get_shortcode_view('mk_blog', 'components/featured-media', true, $media_atts); ?>
+								?>
+								
+								<div class="rbm-col-small-12 rbm-col-medium-2 project-image">
+								
+									<?php echo  mk_get_shortcode_view( 'mk_blog', 'components/featured-media', true, $media_atts ); ?>
+									
+								</div>
 
-								<div class="mk-blog-meta">
+								<div class="rbm-col-small-12 rbm-col-medium-8 project-excerpt">
 									<?php
 									
 									echo mk_get_shortcode_view('mk_blog', 'components/title', true);
 									echo mk_get_shortcode_view('mk_blog', 'components/excerpt', true, ['excerpt_length' => $view_params['excerpt_length'], 'full_content' => $view_params['full_content']]); 
 									?>
-
-									<?php
-									echo do_shortcode( '[mk_button dimension="flat" corner_style="rounded" bg_color="'.$mk_options['skin_color'].'" btn_hover_bg="'.hexDarker($mk_options['skin_color'], 30).'" text_color="light" btn_hover_txt_color="#ffffff" size="medium" target="_self" align="none" url="' . esc_url( get_permalink() ) . '"]'.__('READ MORE', 'mk_framework').'[/mk_button]' );
-									?>
-
-									<div class="clearboth"></div>
+									
+								</div>
+								
+								<div class="rbm-col-small-12 rbm-col-medium-2 project-read-more">
+									
+									<div class="mk-gradient-button fullwidth-false project-button">
+										<a href="<?php the_permalink(); ?>" class="mk-button mk-button--dimension-two mk-button--size-medium mk-button--corner-rounded dark-skin" target="_self" title="<?php _e( 'View Project', 'mcg-project-portfolio-cpt' ); ?>">
+											<span class="text"><?php _e( 'View Project &raquo;', 'mcg-project-portfolio-cpt' ); ?></span>
+											<i class="darker-background"></i>
+										</a>
+									</div>
+									
 								</div>
 
 								<div class="clearboth"></div>
