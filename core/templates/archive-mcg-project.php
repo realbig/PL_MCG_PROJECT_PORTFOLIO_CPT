@@ -64,7 +64,7 @@ if ($view_params['layout'] == 'full') {
 				
 				<?php 
 				
-				$industries_sectors = MCGPROJECTPORTFOLIOCPT()->cpt->get_taxonomy_hierarchy( 'mcg-project-industry-sector', false );
+				$industries_sectors = MCGPROJECTPORTFOLIOCPT()->cpt->get_taxonomy_hierarchy( 'mcg-project-industry-sector' );
 				$technologies_applications = MCGPROJECTPORTFOLIOCPT()->cpt->get_taxonomy_hierarchy( 'mcg-project-tech-application' );
 				
 				?>
