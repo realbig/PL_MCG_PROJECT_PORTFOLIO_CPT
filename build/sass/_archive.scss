@@ -20,6 +20,10 @@
 			margin-bottom: 0 !important;
 			
 			img, .image-hover-overlay {
+				
+				@media #{$small-only} {
+					margin-top: 1em;
+				}
 			
 				@media #{$medium-up} {
 					max-width: 140px;
@@ -55,7 +59,15 @@
 	.project-read-more {
 		
 		.project-button {
+			
 			@include project-button;
+			
+			@media #{$small-only} {
+				
+				margin-bottom: 1em;
+				
+			}
+			
 		}
 		
 	}
