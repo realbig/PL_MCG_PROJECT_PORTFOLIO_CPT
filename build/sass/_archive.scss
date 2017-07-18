@@ -19,10 +19,19 @@
 			
 			margin-bottom: 0 !important;
 			
-			img {
+			img, .image-hover-overlay {
 			
 				@media #{$medium-up} {
 					max-width: 140px;
+					transition: all .15s ease-in-out;
+				}
+				
+			}
+			
+			&:hover {
+				
+				.image-hover-overlay {
+					transform: scale(1.1);
 				}
 				
 			}
