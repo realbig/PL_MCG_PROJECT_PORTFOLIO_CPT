@@ -71,37 +71,33 @@ if ($view_params['layout'] == 'full') {
 				
 				<section class="project-header">
 					
-					<div class="rbm-col-small-12">
-					
-						<select class="project-category">
-							
-							<option value="" disabled selected>
-								<?php _e( 'Filter and Sort Projects', 'mcg-project-portfolio-cpt' ); ?>
-							</option>
-							
-							<?php if ( ! empty( $industries_sectors ) ) : ?>
-							
-								<optgroup label="<?php echo MCGPROJECTPORTFOLIOCPT()->cpt->industry_sector_taxonomy_args['label']; ?>">
+					<select class="project-category-select">
 
-									<?php MCGPROJECTPORTFOLIOCPT()->cpt->taxonomy_hierarchy_html_options( $industries_sectors ); ?>
-							
-								</optgroup>
-							
-							<?php endif; ?>
-							
-							<?php if ( ! empty( $technologies_applications ) ) : ?>
-							
-								<optgroup label="<?php echo MCGPROJECTPORTFOLIOCPT()->cpt->technology_application_taxonomy_args['label']; ?>">
-									
-									<?php MCGPROJECTPORTFOLIOCPT()->cpt->taxonomy_hierarchy_html_options( $technologies_applications ); ?>
-									
-								</optgroup>
-							
-							<?php endif; ?>
-						
-						</select>
-					
-					</div>
+						<option value="" disabled selected>
+							<?php _e( 'Filter and Sort Projects', 'mcg-project-portfolio-cpt' ); ?>
+						</option>
+
+						<?php if ( ! empty( $industries_sectors ) ) : ?>
+
+							<optgroup label="<?php echo MCGPROJECTPORTFOLIOCPT()->cpt->industry_sector_taxonomy_args['label']; ?>">
+
+								<?php MCGPROJECTPORTFOLIOCPT()->cpt->taxonomy_hierarchy_html_options( $industries_sectors ); ?>
+
+							</optgroup>
+
+						<?php endif; ?>
+
+						<?php if ( ! empty( $technologies_applications ) ) : ?>
+
+							<optgroup label="<?php echo MCGPROJECTPORTFOLIOCPT()->cpt->technology_application_taxonomy_args['label']; ?>">
+
+								<?php MCGPROJECTPORTFOLIOCPT()->cpt->taxonomy_hierarchy_html_options( $technologies_applications ); ?>
+
+							</optgroup>
+
+						<?php endif; ?>
+
+					</select>
 				
 				</section>
 				
