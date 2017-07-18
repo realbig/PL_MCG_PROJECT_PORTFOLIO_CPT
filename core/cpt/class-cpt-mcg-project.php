@@ -209,4 +209,85 @@ class MCG_CPT_Project {
 		
 	}
 	
+	/**
+	 * Recursively build Taxonomy Hierarchy
+	 * https://gist.github.com/tripflex/38df9846b06b8a2dca9f4bf1867e5be7
+	 * 
+	 * @param		string  $taxonomy		Taxonomy
+	 * @param		boolean $hide_empty		Whether to include empty Terms or not
+	 * @param		integer $parent			Optionally start at a certain Parent
+	 * @depth		integer	$depth			Only used within Recursion. You probably shouldn't set this manually. This is helpful when utilizing the Data in an HTML representation
+	 *                                                         
+	 * @access		public
+	 * @since		1.0.0
+	 * @return		array   Array of Term Objects holding a "Children" member which recurses into more Terms
+	 */
+	public function get_taxonomy_hierarchy( $taxonomy, $hide_empty = true, $parent = 0, $depth = 0 ) {
+		
+		// only 1 taxonomy
+		$taxonomy = is_array( $taxonomy ) ? array_shift( $taxonomy ) : $taxonomy;
+		
+		// get all direct decendents of the $parent
+		$args = array(
+			'parent' => $parent,
+			'hide_empty' => $hide_empty,
+		);
+		
+		$terms = get_terms( $taxonomy, $args );
+		
+		// prepare a new array.  these are the children of $parent
+		// we'll ultimately copy all the $terms into this new array, but only after they
+		// find their own children
+		$hierarchy = array();
+		
+		// go through all the direct decendents of $parent, and gather their children
+		foreach( $terms as $term ) {
+			
+			// recurse to get the direct decendents of "this" term
+			$term->depth = $depth;
+			
+			$children = $this->get_taxonomy_hierarchy( $taxonomy, $hide_empty, $term->term_id, $depth + 1 );
+			
+			if ( ! empty( $children ) ) $term->children = $children;
+			
+			// add the term to our new array
+			$hierarchy[ $term->term_id ] = $term;
+			
+		}
+		
+		// send the results back to the caller
+		return $hierarchy;
+		
+	}
+	
+	/**
+	 * Output Taxonomy Hierarchy as HTML <options>
+	 * <optgroup>s aren't selectable as values, so we don't want to use those. Instead they'll be tabbed in by &nbsp;
+	 * 
+	 * @param		array   $hierarchy Array of Term Objects from the get_taxonomy_hierarchy() function
+	 *                                                                  
+	 * @access		public
+	 * @since		1.0.0
+	 * @return		void
+	 */
+	public function taxonomy_hierarchy_html_options( $hierarchy ) {
+		
+		foreach ( $hierarchy as $term_tree ) {
+			
+			$html = '';
+
+			$html .= '<option value="' . $term_tree->slug . '">';
+				$html .= str_repeat( '&nbsp;&nbsp;&nbsp;&nbsp;', $term_tree->depth ) . $term_tree->name;
+			$html .= '</option>';
+			
+			echo $html;
+			
+			if ( property_exists( $term_tree, 'children' ) ) {
+				$this->taxonomy_hierarchy_html_options( $term_tree->children );
+			}
+			
+		}
+		
+	}
+	
 }

@@ -62,6 +62,49 @@ if ($view_params['layout'] == 'full') {
 		<div class="theme-page-wrapper mk-main-wrapper mk-grid full-layout  ">
 			<div class="theme-content " itemprop="mainContentOfPage">
 				
+				<?php 
+				
+				$industries_sectors = MCGPROJECTPORTFOLIOCPT()->cpt->get_taxonomy_hierarchy( 'mcg-project-industry-sector', false );
+				$technologies_applications = MCGPROJECTPORTFOLIOCPT()->cpt->get_taxonomy_hierarchy( 'mcg-project-tech-application' );
+				
+				?>
+				
+				<section class="project-header">
+					
+					<div class="rbm-col-small-12">
+					
+						<select class="project-category">
+							
+							<option value="" disabled selected>
+								<?php _e( 'Filter and Sort Projects', 'mcg-project-portfolio-cpt' ); ?>
+							</option>
+							
+							<?php if ( ! empty( $industries_sectors ) ) : ?>
+							
+								<optgroup label="<?php echo MCGPROJECTPORTFOLIOCPT()->cpt->industry_sector_taxonomy_args['label']; ?>">
+
+									<?php MCGPROJECTPORTFOLIOCPT()->cpt->taxonomy_hierarchy_html_options( $industries_sectors ); ?>
+							
+								</optgroup>
+							
+							<?php endif; ?>
+							
+							<?php if ( ! empty( $technologies_applications ) ) : ?>
+							
+								<optgroup label="<?php echo MCGPROJECTPORTFOLIOCPT()->cpt->technology_application_taxonomy_args['label']; ?>">
+									
+									<?php MCGPROJECTPORTFOLIOCPT()->cpt->taxonomy_hierarchy_html_options( $technologies_applications ); ?>
+									
+								</optgroup>
+							
+							<?php endif; ?>
+						
+						</select>
+					
+					</div>
+				
+				</section>
+				
 				<section class="project-loop">
 					
 					<?php if ( have_posts() ) : 
@@ -99,9 +142,9 @@ if ($view_params['layout'] == 'full') {
 									// Do not output random placeholder images in single post if the post does not have a featured image!
 									$dummy = isset( $view_params['single_post'] ) ? false : true;
 
-									$featured_image_src = Mk_Image_Resize::resize_by_id_adaptive( $thumbnail_id, $view_params['image_size'], $view_params['image_width'], $view_params['image_height'], $crop = false, $dummy );
+									$featured_image_src = Mk_Image_Resize::resize_by_id_adaptive( $thumbnail_id, $view_params['image_size'], $media_atts['image_width'], $media_atts['image_height'], $crop = false, $dummy );
 									
-									$image_size_atts = Mk_Image_Resize::get_image_dimension_attr( $thumbnail_id, $view_params['image_size'], $view_params['image_width'], $view_params['image_height'] );
+									$image_size_atts = Mk_Image_Resize::get_image_dimension_attr( $thumbnail_id, $view_params['image_size'], $media_atts['image_width'], $media_atts['image_height'] );
 									
 									if ( ! Mk_Image_Resize::is_default_thumb( $image_src_array[0] ) ) : ?>
             
