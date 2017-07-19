@@ -1,5 +1,7 @@
 .post-type-archive-mcg-project {
 	
+	@import "select2";
+	
 	.project-header {
 		
 		@media #{$medium-up} {
@@ -12,6 +14,7 @@
 		.project-category-select {
 
 			background-color: #f0b500 !important;
+			color: #000;
 			margin-bottom: 1em;
 
 		}

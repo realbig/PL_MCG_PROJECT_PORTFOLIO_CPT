@@ -71,33 +71,37 @@ if ($view_params['layout'] == 'full') {
 				
 				<section class="project-header">
 					
-					<select class="project-category-select">
+					<div class="project-category-select-container">
+					
+						<select class="project-category-select">
 
-						<option value="" disabled selected>
-							<?php _e( 'Filter and Sort Projects', 'mcg-project-portfolio-cpt' ); ?>
-						</option>
+							<option value="" disabled selected>
+								<?php _e( 'Filter and Sort Projects', 'mcg-project-portfolio-cpt' ); ?>
+							</option>
 
-						<?php if ( ! empty( $industries_sectors ) ) : ?>
+							<?php if ( ! empty( $industries_sectors ) ) : ?>
 
-							<optgroup label="<?php echo MCGPROJECTPORTFOLIOCPT()->cpt->industry_sector_taxonomy_args['label']; ?>">
+								<optgroup label="<?php echo MCGPROJECTPORTFOLIOCPT()->cpt->industry_sector_taxonomy_args['label']; ?>">
 
-								<?php MCGPROJECTPORTFOLIOCPT()->cpt->taxonomy_hierarchy_html_options( $industries_sectors ); ?>
+									<?php MCGPROJECTPORTFOLIOCPT()->cpt->taxonomy_hierarchy_html_options( $industries_sectors ); ?>
 
-							</optgroup>
+								</optgroup>
 
-						<?php endif; ?>
+							<?php endif; ?>
 
-						<?php if ( ! empty( $technologies_applications ) ) : ?>
+							<?php if ( ! empty( $technologies_applications ) ) : ?>
 
-							<optgroup label="<?php echo MCGPROJECTPORTFOLIOCPT()->cpt->technology_application_taxonomy_args['label']; ?>">
+								<optgroup label="<?php echo MCGPROJECTPORTFOLIOCPT()->cpt->technology_application_taxonomy_args['label']; ?>">
 
-								<?php MCGPROJECTPORTFOLIOCPT()->cpt->taxonomy_hierarchy_html_options( $technologies_applications ); ?>
+									<?php MCGPROJECTPORTFOLIOCPT()->cpt->taxonomy_hierarchy_html_options( $technologies_applications ); ?>
 
-							</optgroup>
+								</optgroup>
 
-						<?php endif; ?>
+							<?php endif; ?>
 
-					</select>
+						</select>
+						
+					</div>
 					
 					<div class="rbm-col-small-12 rbm-col-medium-6">
 						
