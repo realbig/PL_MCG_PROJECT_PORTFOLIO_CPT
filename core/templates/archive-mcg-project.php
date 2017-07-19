@@ -289,6 +289,26 @@ if ($view_params['layout'] == 'full') {
 			</div>
 		</div>
 		
+		<div class="project-footer">
+			
+			<div class="theme-page-wrapper mk-grid full-layout">
+					
+				<?php for ( $index = 0; $index < 5; $index++ ) : ?>
+
+					<?php // Alternate Column Class for a Grid out of 5. It counts in the opposite direction, so 5 is 1/5 ?>
+					<?php // On Small Screens it automatically makes it 100% ?>
+					<div class="rbm-col-5">
+
+						<?php dynamic_sidebar( 'mcg-project-footer-' . ( $index + 1 ) ); ?>
+
+					</div>
+
+				<?php endfor; ?>
+				
+			</div>
+
+		</div>
+		
 	</div>
 	
 </div>

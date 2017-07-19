@@ -28,6 +28,8 @@ class MCG_Project_Template_Redirects {
 		
 		add_action( 'pre_get_posts', array( $this, 'pre_get_posts' ) );
 		
+		add_action( 'widgets_init', array( $this, 'widgets_init' ) );
+		
 	}
 	
 	/**
@@ -192,6 +194,33 @@ class MCG_Project_Template_Redirects {
 		) );
 		
 		$wp_query->set( 'posts_per_page', 12 );
+		
+	}
+	
+	/**
+	 * Register Project Footer Widget Areas
+	 * 
+	 * @access		public
+	 * @since		1.0.0
+	 * @return		void
+	 */
+	public function widgets_init() {
+		
+		// Footer
+		$footer_columns = 5;
+		for ( $index = 0; $index < $footer_columns; $index++ ) {
+			register_sidebar(
+				array(
+					'name'          =>  'Project Footer ' . ( $index + 1 ),
+					'id'            =>  'mcg-project-footer-' . ( $index + 1 ),
+					'description'   =>  sprintf( __( 'This is Project Footer Widget Area %d', 'mcg-project-portfolio-cpt' ), ( $index + 1 ) ),
+					'before_widget' =>  '<aside id="%1$s" class="widget %2$s">',
+					'after_widget'  =>  '</aside>',
+					'before_title'  =>  '<h3 class="widget-title">',
+					'after_title'   =>  '</h3>',
+				)
+			);
+		}
 		
 	}
 	
