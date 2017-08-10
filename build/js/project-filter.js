@@ -3,6 +3,8 @@
 	$( document ).ready( function() {
 
 		if ( $( '.post-type-archive-mcg-project' ).length < 0 ) return false;
+		
+		$( '.project-category-select option:disabled' ).hide();
 
 		$( '.project-category-select' ).on( 'change', function() {
 
@@ -21,8 +23,10 @@
 	} );
 
 	$( window ).on( 'select2loaded', function() {
+		
 		$( '.project-category-select' ).select2( {
 		} );
+		
 	} );
 
 } )( jQuery );

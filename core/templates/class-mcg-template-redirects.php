@@ -136,7 +136,7 @@ class MCG_Project_Template_Redirects {
 	
 	/**
 	 * GG, Jupiter Theme. I'm thoroughly impressed.
-	 * Replace Title in Header Area on Single Projects to be Case Studies like in the Mock.
+	 * Replace Title in Header Area on Single Projects to be Projects
 	 * 
 	 * @param		string $title Header Title
 	 *     
@@ -147,7 +147,7 @@ class MCG_Project_Template_Redirects {
 	public function mk_theme_page_header_title( $title ) {
 		
 		if ( MCGPROJECTPORTFOLIOCPT()->cpt->post_type == get_post_type() ) {
-			return __( 'Case Studies', 'mcg-project-portfolio-cpt' );
+			return __( 'All Projects', 'mcg-project-portfolio-cpt' );
 		}
 		
 		return $title;

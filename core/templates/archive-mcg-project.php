@@ -71,63 +71,7 @@ if ($view_params['layout'] == 'full') {
 				
 				<section class="project-header">
 					
-					<div class="project-category-select-container">
-					
-						<select class="project-category-select">
-
-							<option value="" disabled selected>
-								<?php _e( 'Filter and Sort Projects', 'mcg-project-portfolio-cpt' ); ?>
-							</option>
-
-							<?php if ( ! empty( $industries_sectors ) ) : ?>
-
-								<optgroup label="<?php echo MCGPROJECTPORTFOLIOCPT()->cpt->industry_sector_taxonomy_args['label']; ?>">
-
-									<?php MCGPROJECTPORTFOLIOCPT()->cpt->taxonomy_hierarchy_html_options( $industries_sectors ); ?>
-
-								</optgroup>
-
-							<?php endif; ?>
-
-							<?php if ( ! empty( $technologies_applications ) ) : ?>
-
-								<optgroup label="<?php echo MCGPROJECTPORTFOLIOCPT()->cpt->technology_application_taxonomy_args['label']; ?>">
-
-									<?php MCGPROJECTPORTFOLIOCPT()->cpt->taxonomy_hierarchy_html_options( $technologies_applications ); ?>
-
-								</optgroup>
-
-							<?php endif; ?>
-
-						</select>
-						
-					</div>
-					
-					<div class="rbm-col-small-12 rbm-col-medium-6">
-						
-						<?php if ( isset( $_REQUEST['project_category'] ) && 
-								 ! empty( $_REQUEST['project_category'] ) ) : 
-						
-							// Get the Term from either Taxonomy since we aren't specifying in the Query
-							$term = get_term_by( 'slug', $_REQUEST['project_category'], 'mcg-project-industry-sector' );
-						
-							if ( ! $term ) {
-								$term = get_term_by( 'slug', $_REQUEST['project_category'], 'mcg-project-tech-application' );
-							}
-						
-							?>
-						
-							<h2 class="project-archive-title"><?php echo $term->name; ?></h2>
-						
-						<?php else : ?>
-						
-							<h2 class="project-archive-title"><?php _e( 'Projects', 'mcg-project-portfolio-cpt' ); ?></h2>
-						
-						<?php endif; ?>
-					
-					</div>
-					
-					<div class="rbm-col-small-12 rbm-col-medium-6 project-breadcrumbs-container align-right">
+					<div class="rbm-col-small-12 project-breadcrumbs-container">
 						
 						<div class="project-breadcrumbs">
 						
@@ -178,6 +122,62 @@ if ($view_params['layout'] == 'full') {
 							
 						</div>
 						
+					</div>
+					
+					<div class="project-category-select-container">
+					
+						<select class="project-category-select">
+
+							<option value="" disabled selected>
+								<?php _e( 'Find Projects', 'mcg-project-portfolio-cpt' ); ?>
+							</option>
+
+							<?php if ( ! empty( $industries_sectors ) ) : ?>
+
+								<optgroup label="<?php echo MCGPROJECTPORTFOLIOCPT()->cpt->industry_sector_taxonomy_args['label']; ?>">
+
+									<?php MCGPROJECTPORTFOLIOCPT()->cpt->taxonomy_hierarchy_html_options( $industries_sectors ); ?>
+
+								</optgroup>
+
+							<?php endif; ?>
+
+							<?php if ( ! empty( $technologies_applications ) ) : ?>
+
+								<optgroup label="<?php echo MCGPROJECTPORTFOLIOCPT()->cpt->technology_application_taxonomy_args['label']; ?>">
+
+									<?php MCGPROJECTPORTFOLIOCPT()->cpt->taxonomy_hierarchy_html_options( $technologies_applications ); ?>
+
+								</optgroup>
+
+							<?php endif; ?>
+
+						</select>
+						
+					</div>
+					
+					<div class="rbm-col-small-12">
+						
+						<?php if ( isset( $_REQUEST['project_category'] ) && 
+								 ! empty( $_REQUEST['project_category'] ) ) : 
+						
+							// Get the Term from either Taxonomy since we aren't specifying in the Query
+							$term = get_term_by( 'slug', $_REQUEST['project_category'], 'mcg-project-industry-sector' );
+						
+							if ( ! $term ) {
+								$term = get_term_by( 'slug', $_REQUEST['project_category'], 'mcg-project-tech-application' );
+							}
+						
+							?>
+						
+							<h2 class="project-archive-title"><?php echo $term->name; ?></h2>
+						
+						<?php else : ?>
+						
+							<h2 class="project-archive-title"><?php _e( 'Projects', 'mcg-project-portfolio-cpt' ); ?></h2>
+						
+						<?php endif; ?>
+					
 					</div>
 				
 				</section>

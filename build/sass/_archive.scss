@@ -25,19 +25,9 @@
 
 		}
 		
-		@media #{$medium-up} {
-		
-			.project-breadcrumbs-container {
+		.project-breadcrumbs-container {
 
-				display: table-cell;
-
-				.project-breadcrumbs {
-					display: inline-block;
-					vertical-align: bottom;
-					height: 0em;
-				}
-
-			}
+			padding-left: 0;
 			
 		}
 		
