@@ -187,9 +187,11 @@ class MCG_Project_Template_Redirects {
 			
 		}
 		
-		// Highest Menu Order Number First, then by Title A-Z
+		$wp_query->set( 'meta_key', 'project_grade' );
+		
+		// Highest Project Grade Number First, then by Title A-Z
 		$wp_query->set( 'orderby', array(
-			'menu_order' => 'DESC',
+			'meta_value_num' => 'DESC',
 			'title' => 'ASC',
 		) );
 		

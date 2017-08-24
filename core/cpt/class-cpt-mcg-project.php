@@ -29,7 +29,7 @@ class MCG_CPT_Project {
 	public $technology_application_taxonomy_labels = array();
 	
     public $icon = 'images-alt';
-	public $supports = array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'page-attributes' );
+	public $supports = array( 'title', 'editor', 'excerpt', 'author', 'thumbnail' );
 	
     public $post_args = array(
 		'public' => true,
@@ -39,7 +39,7 @@ class MCG_CPT_Project {
 		'query_var' => true,
 		'capability_type' => 'post',
 		'has_archive' => true,
-		'hierarchical' => true,
+		'hierarchical' => false,
 		'menu_position' => null,
         'rewrite' => array(
             'slug' => 'project-portfolio',
