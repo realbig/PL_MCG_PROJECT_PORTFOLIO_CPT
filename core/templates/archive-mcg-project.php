@@ -174,7 +174,7 @@ if ($view_params['layout'] == 'full') {
 						
 						<?php else : ?>
 						
-							<h2 class="project-archive-title"><?php _e( 'Projects', 'mcg-project-portfolio-cpt' ); ?></h2>
+							<h2 class="project-archive-title"><?php _e( 'All Projects', 'mcg-project-portfolio-cpt' ); ?></h2>
 						
 						<?php endif; ?>
 					

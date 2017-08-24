@@ -147,7 +147,7 @@ class MCG_Project_Template_Redirects {
 	public function mk_theme_page_header_title( $title ) {
 		
 		if ( MCGPROJECTPORTFOLIOCPT()->cpt->post_type == get_post_type() ) {
-			return __( 'All Projects', 'mcg-project-portfolio-cpt' );
+			return __( 'Projects', 'mcg-project-portfolio-cpt' );
 		}
 		
 		return $title;
