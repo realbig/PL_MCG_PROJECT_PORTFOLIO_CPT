@@ -3,7 +3,7 @@
  * Plugin Name: Project Portfolio CPT
  * Plugin URI: https://github.com/realbig/PL_MCG_PROJECT_PORTFOLIO_CPT/
  * Description: Creates the Project Portfolio CPT and its associated Frontend Templates (Overridable by the Parent/Child Theme)
- * Version: 1.0.0b2
+ * Version: 1.0.0b3
  * Text Domain: mcg-project-portfolio-cpt
  * Author: Eric Defore
  * Author URI: https://realbigmarketing.com/

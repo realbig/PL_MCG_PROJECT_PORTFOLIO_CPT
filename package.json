@@ -1,6 +1,6 @@
 {
 	"name": "PL_MCG_PROJECT_PORTFOLIO_CPT",
-	"version": "1.0.0b2",
+	"version": "1.0.0b3",
 	"main": "gulpfile.js",
 	"dependencies": {},
 	"devDependencies": {
